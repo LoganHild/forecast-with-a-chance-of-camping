@@ -1,32 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main page</title>
 
-    
-
-    <link rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous"
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" 
-    href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+
     <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
-<body>
+  </head>
+  <body>
     <!-- hero -->
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container">
-                <h1>Outdoor Activities Dashboard</h1>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-1">Outdoor Activities Dashboard</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- horizontal tab-->
+    <!-- <div class="main container">
+        <div class="tabs is-centered">
+            <div class="field has-addons">
+                <p class="control">
+                    <input type="text" class="input" placeholder="Search">
+                </p>
+                <p class="control">
+                    <a href="" class="button is-info">Search</a>
+                </p>
+                
             </div>
         </div>
-    </section>
-</body>
+
+    </div> -->
+
+    <div class="block">
+      <div class="columns">
+        <div class="column">
+          <p class="control">
+            <input type="text" class="input" placeholder="Your location">
+            <span class="icon is-small is-left">
+              <!-- <i class="fas fa-envelope"></i> -->
+          </p>
+        </div>
+        <div class="column">
+            <input class="datepicker" type="text" id="datepicker" autocomplete="off">
+            <span class="icon is-small is-left">
+              <!-- <i class="fas fa-envelope"></i> -->
+          <!-- <p class="notification">Second Column</p> -->
+        </div>
+        <div class="column">
+          <button class="button is-primary is-rounded">Search</button>
+          <!-- <p class="notification">Third Column</p> -->
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
