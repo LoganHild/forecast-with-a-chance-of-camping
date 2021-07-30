@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main page</title>
+
+    <!-- jQuery UI <link> tag -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
 
     <link
       rel="stylesheet"
@@ -19,57 +24,63 @@
     />
 
     <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>Main page</title>
   </head>
   <body>
     <!-- hero -->
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title is-1">Outdoor Activities Dashboard</h1>
+          <h1 class="title is-1 has-text-centered">
+            Outdoor Activities Dashboard
+          </h1>
         </div>
       </div>
     </section>
 
-    <!-- horizontal tab-->
-    <!-- <div class="main container">
-        <div class="tabs is-centered">
-            <div class="field has-addons">
-                <p class="control">
-                    <input type="text" class="input" placeholder="Search">
-                </p>
-                <p class="control">
-                    <a href="" class="button is-info">Search</a>
-                </p>
-                
-            </div>
-        </div>
+    <!-- background img -->
+    <section class="hero hero-head hero-foot">
+      <div class="hero-body">
+        <div class="bg-img is-fullheight">
+          <figure class="image">
+            <img src="assets/images/background1.jpeg" />
 
-    </div> -->
-
-    <div class="block">
-      <div class="columns">
-        <div class="column">
-          <p class="control">
-            <input type="text" class="input" placeholder="Enter Your Zip Code">
-            <span class="icon is-small is-left">
-              <!-- <i class="fas fa-envelope"></i> -->
-          </p>
-        </div>
-        <div class="column">
-            <input class="datepicker" type="text" id="datepicker" autocomplete="off">
-            <span class="icon is-small is-left">
-              <!-- <i class="fas fa-envelope"></i> -->
-          <!-- <p class="notification">Second Column</p> -->
-        </div>
-        <div class="column">
-          <button class="button is-primary is-rounded">Search</button>
-          <!-- <p class="notification">Third Column</p> -->
+            
+          </figure>
         </div>
       </div>
-    </div>
+    </section>
 
 
 
+
+    <!-- input card -->
+    <section class="inputs">
+      <div class="container">
+        <form class="box">
+          <label class="label">Location</label>
+          <input
+            class="input is-primary is-outlined"
+            type="text"
+            id="zip"
+            placeholder="Enter Your Zip Code"
+          />
+
+          <label class="label">Pick Your Dates</label>
+          <input
+            class="datepicker is-primary is-outlined"
+            type="text"
+            id="datepicker"
+            autocomplete="off"
+            placeholder="Choose Your Date"
+          />
+          <button class="button is-outlined is-primary">Search</button>
+        </form>
+      </div>
+    </section>
+
+    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

@@ -1,4 +1,41 @@
-/* .datepicker {
-    min-width: 400px;
+
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.datepicker {
+    min-width: 150px;
     min-height: 40px;
-} */
+}
+
+.containers {
+    position: relative;
+}
+/* background img styling */
+.bg-img { 
+    /* background-image: url(./assets/images/background1.jpeg) !important; */
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: -999;
+    
+
+}
+
+.inputs {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 999;
+    padding: 160px 160px;
+    
+}
