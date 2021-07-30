@@ -55,7 +55,7 @@ function currentInfo() {
 
                     //UV index
                     var uvIndex = data.current.uvi;
-                    $('selector').text('UV Index: ' + uvIndex);
+                    // $('selector').text('UV Index: ' + uvIndex);
 
                 })
             }
