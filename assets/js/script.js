@@ -1,9 +1,29 @@
+//datepicker
 $("#datepicker").datepicker({
     changeMonth: true,
     changeYear: true
 }
 );
 
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 //gets current weather, for entered zip code, upon clicking the search button
 function currentInfo() {
     fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode.val() + '&units=imperial&appid=0fe3cfd026afb76b1605f15581136ad8')
