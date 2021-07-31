@@ -1,86 +1,71 @@
-//datepicker
 $("#datepicker").datepicker({
     changeMonth: true,
     changeYear: true
 }
 );
 
-//Get the button:
-mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
 //gets current weather, for entered zip code, upon clicking the search button
-function currentInfo() {
-    fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode.val() + '&units=imperial&appid=0fe3cfd026afb76b1605f15581136ad8')
-      .then(function(response) {
-          return response.json();
-      })
-      .then(function(data) {
+var searchBtn = $('.button');
+var zipCode = $('#zip');
 
-          //variable for city name based on zip code search
-          var cityName = data.name;
-          //$('selector').text(cityName);
+searchBtn.on('click', function currentInfo(event) {
+    event.preventDefault();
 
-          var latitude = data.coord.lat;
-          var longitude = data.coord.lon;
+    if (zipCode.val() !== null) {
+        fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode.val() + '&units=imperial&appid=0fe3cfd026afb76b1605f15581136ad8')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            //variable for city name based on zip code search
+            var cityName = data.name;
+            //$('selector').text(cityName);
 
-          //uses data from first api to call a second
-          function forecastInfo() {
-              fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=0fe3cfd026afb76b1605f15581136ad8')
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    console.log(data);
-                    
-                    //Weather description
-                    var weatherDesc = data.current.weather[0].main;
+            var latitude = data.coord.lat;
+            var longitude = data.coord.lon;
 
-                    //Weather Icon
-                    var weatherIcon = data.current.weather[0].weatherIcon;
-                    //$('selector').attr('src', 'http://openweathermap.org/img/wn/' + weatherIcon + '@2x.png');
-                    //$('selector').attr('alt', 'Weather Icon');
+            //uses data from first api to call a second
+            function forecastInfo() {
+                fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=0fe3cfd026afb76b1605f15581136ad8')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        console.log(data);
+                        
+                        //Weather description
+                        var weatherDesc = data.current.weather[0].main;
 
-                    //Date
-                    var unixDate = data.current.dt;
-                    var currentDate = moment.unix(unixDate).format('MM/DD/YYYY');
-                    //$('selector').text(currentDate)
+                        //Weather Icon
+                        var weatherIcon = data.current.weather[0].weatherIcon;
+                        //$('selector').attr('src', 'http://openweathermap.org/img/wn/' + weatherIcon + '@2x.png');
+                        //$('selector').attr('alt', 'Weather Icon');
 
-                    //Temperature
-                    var temperature = data.current.temp;
-                    //$('selector).text('Temperature: ' + Math.round(temperature) + '°F');
+                        //Date
+                        var unixDate = data.current.dt;
+                        var currentDate = moment.unix(unixDate).format('MM/DD/YYYY');
+                        //$('selector').text(currentDate)
 
-                    //Humidity
-                    var humidity = data.current.humidity;
-                    //$('selector').text('Humidity: ' + humidity + '%')
+                        //Temperature
+                        var temperature = data.current.temp;
+                        //$('selector).text('Temperature: ' + Math.round(temperature) + '°F');
 
-                    //Wind Speed
-                    var windSpeed = data.current.wind_speed;
-                    //$('selector').text('Wind Speed: ' + windValue + 'mph');
+                        //Humidity
+                        var humidity = data.current.humidity;
+                        //$('selector').text('Humidity: ' + humidity + '%')
 
-                    //UV index
-                    var uvIndex = data.current.uvi;
-                    // $('selector').text('UV Index: ' + uvIndex);
+                        //Wind Speed
+                        var windSpeed = data.current.wind_speed;
+                        //$('selector').text('Wind Speed: ' + windValue + 'mph');
 
-                })
-            }
-          forecastInfo();
-      })
-}
+                        //UV index
+                        var uvIndex = data.current.uvi;
+                        // $('selector').text('UV Index: ' + uvIndex);
 
-searchBtn.on('click', currentInfo);
+                    })
+                }
+            forecastInfo();
+        })
+    }
+})
