@@ -4,6 +4,7 @@ var CampsiteList = document.querySelector("tbody");
 var datePickerEl = document.querySelector("#datepicker");
 var tableBody = document.getElementById("recWebLink");
 //datepicker
+
 $("#datepicker").datepicker({
   changeMonth: true,
   changeYear: true,
