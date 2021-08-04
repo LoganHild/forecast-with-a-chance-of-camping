@@ -1,214 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Camping Navigator</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-  <body>
-    <!-- hero -->
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <!-- <div class="container"> -->
-        <h1 class="title is-1 has-text-centered">
-          <strong>Forecast With A Chance Of Camping</strong>
-        </h1>
-        <!-- </div> -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camping Navigator</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <!-- hero -->
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <!-- <div class="container"> -->
+      <h1 class="title is-1 has-text-centered">
+        <strong>Forecast With A Chance Of Camping</strong>
+      </h1>
+      <!-- </div> -->
+    </div>
+  </section>
+
+  <!-- background img -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="bg-img is-fullheight">
+        <figure class="image">
+          <img src="assets/images/background4.jpeg" />
+        </figure>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- background img -->
-    <section class="hero">
-      <div class="hero-body">
-        <div class="bg-img is-fullheight">
-          <figure class="image">
-            <img src="assets/images/background4.jpeg" />
-          </figure>
-        </div>
-      </div>
-    </section>
+  <!--TO THE TOP Button-->
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <!--HOME button-->
+  <button id="homeBtn"><a href="index.html">Home</a></button>
 
-    
-    
+  <section class="section is-medium">
 
-    <!--TO THE TOP Button-->
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    <!--HOME button-->
-    <button id="homeBtn"><a href="index.html">Home</a></button>
+    <!--Added cards for weather, can't get them separated, hangs over a tiny bit, -->
+    <h1 id="weatherTitle" class="title"></h1>
+    <h2 id="weatherSubtitle" class="subtitle">7-day Forecast</h2>
 
-    <section class="section is-medium">
-      <!--*******Logan Changes********-->
-      <!--Added cards for weather, can't get them separated, hangs over a tiny bit, -->
-      <h1 id="weatherTitle" class="title"></h1>
-      <h2 id="weatherSubtitle" class="subtitle">7-day Forecast</h2>
-
-      <div id="forecast" class="card columns column">
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="currentDate" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="weatherImg" />
-              </figure>
-              <p id="currentDesc" class="subtitle is-6"></p>
-              <p id="currentTemp" class="subtitle is-6"></p>
-              <p id="currentHumidity" class="subtitle is-6"></p>
-              <p id="currentWindSpeed" class="subtitle is-6"></p>
-              <p id="currentUV" class="uvIndex subtitle is-6"></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="dateTwo" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="imgTwo" />
-              </figure>
-              <p id="descTwo" class="subtitle is-6"></p>
-              <p id="tempTwo" class="subtitle is-6"></p>
-              <p id="humidityTwo" class="subtitle is-6"></p>
-              <p id="windTwo" class="subtitle is-6"></p>
-              <p id="uvTwo" class="uvIndexTwo subtitle is-6"></p>
-            </div>
-          </div>
-        </div>
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="dateThree" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="imgThree" />
-              </figure>
-              <p id="descThree" class="subtitle is-6"></p>
-              <p id="tempThree" class="subtitle is-6"></p>
-              <p id="humidityThree" class="subtitle is-6"></p>
-              <p id="windThree" class="subtitle is-6"></p>
-              <p id="uvThree" class="uvIndexThree subtitle is-6"></p>
-            </div>
-          </div>
-        </div>
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="dateFour" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="imgFour" />
-              </figure>
-              <p id="descFour" class="subtitle is-6"></p>
-              <p id="tempFour" class="subtitle is-6"></p>
-              <p id="humidityFour" class="subtitle is-6"></p>
-              <p id="windFour" class="subtitle is-6"></p>
-              <p id="uvFour" class="uvIndexFour subtitle is-6"></p>
-            </div>
-          </div>
-        </div>
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="dateFive" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="imgFive" />
-              </figure>
-              <p id="descFive" class="subtitle is-6"></p>
-              <p id="tempFive" class="subtitle is-6"></p>
-              <p id="humidityFive" class="subtitle is-6"></p>
-              <p id="windFive" class="subtitle is-6"></p>
-              <p id="uvFive" class="uvIndexFive subtitle is-6"></p>
-            </div>
-          </div>
-        </div>
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="dateSix" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="imgSix" />
-              </figure>
-              <p id="descSix" class="subtitle is-6"></p>
-              <p id="tempSix" class="subtitle is-6"></p>
-              <p id="humiditySix" class="subtitle is-6"></p>
-              <p id="windSix" class="subtitle is-6"></p>
-              <p id="uvSix" class="uvIndexSix subtitle is-6"></p>
-            </div>
-          </div>
-        </div>
-        <div class="card-content column">
-          <div class="media">
-            <div class="media-content">
-              <p id="dateSeven" class="title is-4"></p>
-              <figure class="image is-96x96">
-                <img id="imgSeven" />
-              </figure>
-              <p id="descSeven" class="subtitle is-6"></p>
-              <p id="tempSeven" class="subtitle is-6"></p>
-              <p id="humiditySeven" class="subtitle is-6"></p>
-              <p id="windSeven" class="subtitle is-6"></p>
-              <p id="uvSeven" class="uvIndexSeven subtitle is-6"></p>
-            </div>
+    <div id="forecast" class="card columns column">
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="currentDate" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="weatherImg" />
+            </figure>
+            <p id="currentDesc" class="subtitle is-6"></p>
+            <p id="currentTemp" class="subtitle is-6"></p>
+            <p id="currentHumidity" class="subtitle is-6"></p>
+            <p id="currentWindSpeed" class="subtitle is-6"></p>
+            <p id="currentUV" class="uvIndex subtitle is-6"></p>
           </div>
         </div>
       </div>
-    </section>
-      <!--*********End Changes*********-->
 
-      <!-- response section -->
-      <div class="columns">
-        <div class="column is-three-quarters">
-          <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <table class="table media-left">
-                    <tbody id="recWebLink" class="userList"></tbody>
-                  </table>
-                </div>
-      
-                <div class="media-content" id="description">
-                  <!-- <p class="subtitle is-5" id="description"></p> -->
-                </div>
-
-              </div>
-            </div>
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="dateTwo" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="imgTwo" />
+            </figure>
+            <p id="descTwo" class="subtitle is-6"></p>
+            <p id="tempTwo" class="subtitle is-6"></p>
+            <p id="humidityTwo" class="subtitle is-6"></p>
+            <p id="windTwo" class="subtitle is-6"></p>
+            <p id="uvTwo" class="uvIndexTwo subtitle is-6"></p>
           </div>
         </div>
       </div>
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="dateThree" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="imgThree" />
+            </figure>
+            <p id="descThree" class="subtitle is-6"></p>
+            <p id="tempThree" class="subtitle is-6"></p>
+            <p id="humidityThree" class="subtitle is-6"></p>
+            <p id="windThree" class="subtitle is-6"></p>
+            <p id="uvThree" class="uvIndexThree subtitle is-6"></p>
+          </div>
+        </div>
       </div>
-      
-
-
-
-    <!-- footer  -->
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          Forecast With A Chance Of Camping <br />
-          Made with ❤️️ by <a href="https://github.com/LoganHild/project-1">ELLA</a> <br />
-          2021 All Rights Reserved
-        </p>
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="dateFour" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="imgFour" />
+            </figure>
+            <p id="descFour" class="subtitle is-6"></p>
+            <p id="tempFour" class="subtitle is-6"></p>
+            <p id="humidityFour" class="subtitle is-6"></p>
+            <p id="windFour" class="subtitle is-6"></p>
+            <p id="uvFour" class="uvIndexFour subtitle is-6"></p>
+          </div>
+        </div>
       </div>
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="dateFive" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="imgFive" />
+            </figure>
+            <p id="descFive" class="subtitle is-6"></p>
+            <p id="tempFive" class="subtitle is-6"></p>
+            <p id="humidityFive" class="subtitle is-6"></p>
+            <p id="windFive" class="subtitle is-6"></p>
+            <p id="uvFive" class="uvIndexFive subtitle is-6"></p>
+          </div>
+        </div>
+      </div>
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="dateSix" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="imgSix" />
+            </figure>
+            <p id="descSix" class="subtitle is-6"></p>
+            <p id="tempSix" class="subtitle is-6"></p>
+            <p id="humiditySix" class="subtitle is-6"></p>
+            <p id="windSix" class="subtitle is-6"></p>
+            <p id="uvSix" class="uvIndexSix subtitle is-6"></p>
+          </div>
+        </div>
+      </div>
+      <div class="card-content column">
+        <div class="media">
+          <div class="media-content">
+            <p id="dateSeven" class="title is-4"></p>
+            <figure class="image is-96x96">
+              <img id="imgSeven" />
+            </figure>
+            <p id="descSeven" class="subtitle is-6"></p>
+            <p id="tempSeven" class="subtitle is-6"></p>
+            <p id="humiditySeven" class="subtitle is-6"></p>
+            <p id="windSeven" class="subtitle is-6"></p>
+            <p id="uvSeven" class="uvIndexSeven subtitle is-6"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-      ></script>
+  <!-- response section -->
+  <div class="columns">
+    <div class="column is-three-quarters">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <table class="table media-left">
+                <tbody id="recWebLink" class="userList"></tbody>
+              </table>
+            </div>
 
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <script src="./assets/js/script.js"></script>
-    </footer>
-  </body>
+            <div class="media-content" id="description">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- footer  -->
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Forecast With A Chance Of Camping <br />
+        Made with ❤️️ by <a href="https://github.com/LoganHild/project-1">E.L.L.A.</a> <br />
+        2021 All Rights Reserved
+      </p>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </footer>
+</body>
+
 </html>

@@ -1,19 +1,16 @@
 :root {
   --dark: hsl(0, 0%, 21%);
 }
-
 * {
   margin: 0;
   padding: 0;
   /* color:white; */
 }
-
 #datepicker {
   min-width: 150px;
   min-height: 40px;
-  color:black; 
+  color: black;
 }
-
 .containers {
   position: relative;
 }
@@ -59,9 +56,9 @@
   bottom: 0;
   width: 100%;
 }
-
-  
-
+.footer p {
+  color: white;
+}
 /* TO THE TOP button */
 #myBtn {
   display: none; /* Hidden by default */
@@ -78,8 +75,6 @@
   border-radius: 10px; /* Rounded corners */
   font-size: 18px; /* Increase font size */
 }
-
-
 #myBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
@@ -101,8 +96,6 @@
 #homeBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
-
-/*Logan Changes, couldn't see titles so I changed to white, added uvi colors*/
 #weatherTitle {
   color: white;
   font-weight: bolder;
@@ -131,9 +124,8 @@
   font-weight: 500;
   /* color: white; */
 }
-/*End Changes*/
 .userList img {
-  display:block;
+  display: block;
   height: auto;
   width: 100%;
   max-width: 480px;
@@ -147,6 +139,6 @@
 .ui-datepicker .ui-datepicker-title select {
   color: black;
 }
-p{
+p {
   color: black;
 }

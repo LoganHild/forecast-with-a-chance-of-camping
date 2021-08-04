@@ -1,10 +1,9 @@
+//global variables
 var cityFormEl = document.querySelector("#city-search-form");
 var cityInputEl = document.querySelector("#city");
 var CampsiteList = document.querySelector("tbody");
 var datePickerEl = document.querySelector("#datepicker");
-var tableBody = document.getElementById("recWebLink");
-
-//Create a global variable for rec_area_desc					 
+var tableBody = document.getElementById("recWebLink");				 
 var recDescription = document.querySelector('#description');
 
 //datepicker
@@ -12,23 +11,11 @@ $("#datepicker").datepicker({
   changeMonth: true,
   changeYear: true,
 });
-// var formSubmitHandler = function(){
-//   var zipCode = localStorage.getItem('city');
-//   if(zipCode){
-//       searchRecAreas(zipCode);
-//       cityInputEl.value = "";
-//   } else{
-//       alert("Please enter a City");
-//   }
-// }
 
 var zipCode = localStorage.getItem("city");
 
-
 // First Search - Get method RecID
 function searchRecAreas(zipCode) {
-
-  console.log("ZIPPPPPPPPPP", zipCode);
   // var apiKey = "064e9eb3-9b5a-4ba5-8127-32d6b2871560"
   var zipCodeQueryUrl =
     "https://ridb.recreation.gov/api/v1/recareaaddresses?limit=5&offset=0&query=" +
@@ -39,28 +26,22 @@ function searchRecAreas(zipCode) {
       return response.json();
     })
     .then(function (data) {
-      console.log("POINT 1", data.RECDATA.length);
+      // console.log("POINT 1", data.RECDATA.length);
       if (data.RECDATA.length === 0) {
         //redirect to Main page.
         var atag = document.createElement("a"); 
         atag.setAttribute( 'href', 'index.html'); 
         atag.textContent = 'home'
-        console.log(atag);
-
+        // console.log(atag);
         recDescription.textContent = `Ooops... We did not find any campgrounds in that area. There's no place like \n `;
         recDescription.style.color = "red"; 
         recDescription.style.fontWeight = "bolder";
         recDescription.style.fontSize = "larger";
-
         recDescription.appendChild(atag);
-        
-        
         return ; 
       }
-      else{
-        
+      else{ 
         searchFacilities(data.RECDATA);
-
       }
     });
 }
@@ -70,10 +51,7 @@ function searchFacilities(recData) {
   for (var i = 0; i < recData.length; i++) {
     //Each Rec Area ID
     var recAreaID = recData[i].RecAreaID;
-    var recAreaUrl =
-      "https://ridb.recreation.gov/api/v1/recareas/" +
-      recAreaID +
-      "?full=true&apikey=064e9eb3-9b5a-4ba5-8127-32d6b2871560";
+    var recAreaUrl = "https://ridb.recreation.gov/api/v1/recareas/" + recAreaID + "?full=true&apikey=064e9eb3-9b5a-4ba5-8127-32d6b2871560";
     fetch(recAreaUrl)
       .then(function (response) {
         return response.json();
@@ -87,18 +65,14 @@ function searchFacilities(recData) {
           for (var i = 0; i < FacilityNames.length; i++) {
             // var listItem = document.createElement('tr');
             link.textContent = FacilityNames[i].FacilityName;
-            //Append the li element to the id associated with the ul element.
-            //  CampsiteList.appendChild(listItem);
-            console.log(data.FACILITY);
-            console.log(FacilityNames[i].FacilityName);
           }
             var mediaNames = data.MEDIA;
             for (var i = 0; i < mediaNames.length; i++) {
               var webImage = document.createElement("img");
               webImage.src = mediaNames[i].URL;
               tableBody.append(webImage);
-              console.log(mediaNames);
-              console.log(mediaNames[i].URL);
+              // console.log(mediaNames);
+              // console.log(mediaNames[i].URL);
             }
 
             //Getting and appending RecArea description
@@ -107,33 +81,29 @@ function searchFacilities(recData) {
               var para = document.createElement("p");
               para.textContent = recDesc;
               recDescription.appendChild(para);
-              console.log(data.RecAreaDescription);
+              // console.log(data.RecAreaDescription);
           }
-
-
-
             // Retreiving website URLS
             var linkNames = data.LINK;
-
             //Link Name
             for (var i = 0; i < linkNames.length; i++) {
               var createTableRow = document.createElement("tr");
               var tableData = document.createElement("td");
               var link = document.createElement("a");
-            
+               
+              link.style.fontWeight = "bolder";
+              link.style.fontSize = "larger";
               //Append the li element to the id associated with the ul element.
               link.textContent = FacilityNames[i].FacilityName;
               link.href = linkNames[i].URL;
               // Appending the link to the tabledata and then appending the tabledata to the tablerow
               // The tablerow then gets appended to the tablebody
-              createTableRow.appendChild(tableData);
-              tableBody.appendChild(createTableRow);
-              tableData.appendChild(link);
-
+              createTableRow.prepend(tableData);
+              recDescription.prepend(createTableRow);
+              recDescription.prepend(link);
               /* console.log(linkNames);
                 console.log(linkNames[i].URL); */
           }
-  
         }
       });
   }
@@ -143,10 +113,7 @@ function searchFacilities(recData) {
 function searchCampsite(facilityData) {
   for (var i = 0; i < facilityData.length; i++) {
     var facilityDataID = facilityData[i].FacilityID;
-    var facilityDataUrl =
-      "https://ridb.recreation.gov/api/v1/facilities/" +
-      facilityDataID +
-      "/campsites?apikey=064e9eb3-9b5a-4ba5-8127-32d6b2871560";
+    var facilityDataUrl = "https://ridb.recreation.gov/api/v1/facilities/" + facilityDataID + "/campsites?apikey=064e9eb3-9b5a-4ba5-8127-32d6b2871560";
     fetch(facilityDataUrl)
       .then(function (response) {
         return response.json();
@@ -158,22 +125,21 @@ function searchCampsite(facilityData) {
 }
 //Campground Data for website
 function createCampgroundHtml(data) {
-  console.log(data);
+  // console.log(data);
   // //Move to next page 
   // secondPage(); 
-
   //console.log(data.RECDATA[0].CampsiteName)
   //create Elements
 }
 // cityFormEl.addEventListener("submit", formSumbitHandler);
 $("#city").keyup(function () {
-  console.log($("#city").val());
+  // console.log($("#city").val());
   var cityInput = $("#city").val();
   //localStorage
   localStorage.setItem("city", cityInput);
 });
 $("#datepicker").change(function () {
-  console.log($("#datepicker").val());
+  // console.log($("#datepicker").val());
   var datepickerInput = $("#datepicker").val();
   //localStorage
   localStorage.setItem("datepicker", datepickerInput);
@@ -197,7 +163,6 @@ function topFunction() {
 }
 
 //gets current weather, for entered zip code, upon clicking the search button
-// Logan Changes, Yikes, Sorry for the extra 300 lines, I couldn't get it to work with anything else
 function currentInfo() {
   //retrieves value from city key in localStorage, uses value to run fetches
   var zipCode = localStorage.getItem("city");
@@ -216,8 +181,6 @@ function currentInfo() {
         var cityName = data.name;
         var nameLabel = $("#weatherTitle");
         nameLabel.text(cityName);
-
-        //   nameLabel.attr('class','bulma class');
 
         //$('selector').text(cityName);
         var latitude = data.coord.lat;
@@ -534,75 +497,8 @@ function currentInfo() {
 }
 currentInfo();
 
-//move window.location.href down here and added to a function, weather was not working since it would reload the page everytime the function ran
 function secondPage() {
   window.location.href = "index2.html";
 }
 searchRecAreas(zipCode);
 cityFormEl.addEventListener("submit", secondPage);
-// cityFormEl.addEventListener('submit', formSubmitHandler);
-
-
-
-// // Second Search -- Facility_Name
-// function searchFacilities(recData) {
-//   for (var i = 0; i < recData.length; i++) {
-//       //Each Rec Area ID
-//       var recAreaID = recData[i].RecAreaID;
-//       var recAreaUrl = "https://ridb.recreation.gov/api/v1/recareas/" + recAreaID + "?full=true&apikey=064e9eb3-9b5a-4ba5-8127-32d6b2871560";
-//       fetch(recAreaUrl)
-//           .then(function(response) {
-//               return response.json()
-//           })
-//           .then(function(data) {
-//               if (data.FACILITY) {
-//                   searchCampsite(data.FACILITY);
-//                   var FacilityNames = data.FACILITY;
-//                   //Facility Name
-//                     for (var i = 0; i < FacilityNames.length; i++) {
-//                       var listItem = document.createElement('li');
-//                       listItem.textContent = FacilityNames[i].FacilityName;
-//                //Append the li element to the id associated with the ul element(Facility Names).
-//                      CampsiteList.appendChild(listItem);
-//                   console.log(FacilityNames[i].FacilityName);
-//                      }
-//                    // Retreiving website URLS
-//                   if (data.LINK) {
-//                     searchCampsite(data.LINK);
-//                   var linkNames = data.LINK;
-//                   //Link Name
-//                     for (var i = 0; i < linkNames.length; i++) {
-//                       var listItem = document.createElement('li');
-//                       var createTableRow = document.createElement('tr');
-//                       var tableData = document.createElement('td');
-//                       var link = document.createElement('a');
-//                     //  listItem.textContent = linkNames[i].FacilityName;
-//                       //CampsiteList.appendChild(listItem);
-//                  //Append the li element to the id associated with the ul element.
-//                  link.textContent = linkNames[i].URL;
-//                  link.href = linkNames[i].URL;
-//                  // Appending the link to the tabledata and then appending the tabledata to the tablerow
-//                  // The tablerow then gets appended to the tablebody
-//                  tableData.appendChild(link);
-//                  createTableRow.appendChild(tableData);
-//                  tableData.appendChild(createTableRow);
-//                   console.log(linkNames);
-//                   console.log(linkNames[i].URL);
-//                     }
-//                   }
-//                   //Retrieving website Images
-//                   if (data.MEDIA) {
-//                   searchCampsite(data.MEDIA);
-//                   var mediaNames = data.MEDIA;
-//                   for (var i = 0; i < mediaNames.length; i++) {
-//                       var webImage = document.createElement("img");
-//                         webImage.src = mediaNames[i].URL;
-//                         tableBody.append(webImage);
-//                  console.log(mediaNames);
-//                  console.log(mediaNames[0].URL);
-//                   }
-//              }
-//               }
-//           })
-//   }
-// }
