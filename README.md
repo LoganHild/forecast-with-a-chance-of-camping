@@ -32,7 +32,12 @@ Open Weather API <https://openweathermap.org/api>
 Recreation.gov (Recreation Information Database (RIDB)) API <https://ridb.recreation.gov/docs#/Attributes/getCampsiteAttributes>
 
 ## Demo
-![demo](assets/images/demo.png)
+![demo](assets/images/demo1.png)
+![demo](assets/images/demo2.png)
+![demo](assets/images/demo3.png)
+![demo](assets/images/demo4.png)
+
+![demo_gif](assets/images/demo5.gif)
 
 This application can be found here:
 * https://github.com/LoganHild/forecast-with-a-chance-of-camping
@@ -42,10 +47,10 @@ The URL of the GitHub repository that contains the code of the application:
 
 
 ## Contributors
-- Alena Rehberger <https://github.com/AlenaReh>
 - Eby Thomas <https://github.com/ethomasa>
-- Liz Kray <https://github.com/krayx003>
 - Logan Hildebrandt <https://github.com/LoganHild>
+- Liz Kray <https://github.com/krayx003>
+- Alena Rehberger <https://github.com/AlenaReh>
 
 ​
 ## Credits
