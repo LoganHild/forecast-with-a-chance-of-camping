@@ -3,8 +3,11 @@ var cityInputEl = document.querySelector("#city");
 var CampsiteList = document.querySelector("tbody");
 var datePickerEl = document.querySelector("#datepicker");
 var tableBody = document.getElementById("recWebLink");
-//datepicker
 
+//Create a global variable for rec_area_desc					 
+var recDescription = document.querySelector('#description');
+
+//datepicker
 $("#datepicker").datepicker({
   changeMonth: true,
   changeYear: true,
@@ -18,10 +21,14 @@ $("#datepicker").datepicker({
 //       alert("Please enter a City");
 //   }
 // }
+
 var zipCode = localStorage.getItem("city");
+
 
 // First Search - Get method RecID
 function searchRecAreas(zipCode) {
+
+  console.log("ZIPPPPPPPPPP", zipCode);
   // var apiKey = "064e9eb3-9b5a-4ba5-8127-32d6b2871560"
   var zipCodeQueryUrl =
     "https://ridb.recreation.gov/api/v1/recareaaddresses?limit=5&offset=0&query=" +
@@ -32,11 +39,34 @@ function searchRecAreas(zipCode) {
       return response.json();
     })
     .then(function (data) {
-      searchFacilities(data.RECDATA);
+      console.log("POINT 1", data.RECDATA.length);
+      if (data.RECDATA.length === 0) {
+        //redirect to Main page.
+        var atag = document.createElement("a"); 
+        atag.setAttribute( 'href', 'index.html'); 
+        atag.textContent = 'home'
+        console.log(atag);
+
+        recDescription.textContent = `Ooops... We did not find any campgrounds in that area. There's no place like \n `;
+        recDescription.style.color = "red"; 
+        recDescription.style.fontWeight = "bolder";
+        recDescription.style.fontSize = "larger";
+
+        recDescription.appendChild(atag);
+        
+        
+        return ; 
+      }
+      else{
+        
+        searchFacilities(data.RECDATA);
+
+      }
     });
 }
 // Second Search - Get method- Facility_Name
 function searchFacilities(recData) {
+
   for (var i = 0; i < recData.length; i++) {
     //Each Rec Area ID
     var recAreaID = recData[i].RecAreaID;
@@ -70,30 +100,39 @@ function searchFacilities(recData) {
               console.log(mediaNames);
               console.log(mediaNames[i].URL);
             }
+
+            //Getting and appending RecArea description
+            var recDesc = data.RecAreaDescription
+            for (var i = 0; i < 1; i++) {
+              var para = document.createElement("p");
+              para.textContent = recDesc;
+              recDescription.appendChild(para);
+              console.log(data.RecAreaDescription);
+          }
+
+
+
             // Retreiving website URLS
-              var linkNames = data.LINK;
+            var linkNames = data.LINK;
 
-              //Link Name
-              for (var i = 0; i < linkNames.length; i++) {
-                // var listItem = document.createElement('tr');
-                var createTableRow = document.createElement("tr");
-                var tableData = document.createElement("td");
-                var link = document.createElement("a");
-              
-                //Append the li element to the id associated with the ul element.
-                link.textContent = FacilityNames[i].FacilityName;
-                link.href = linkNames[i].URL;
-                // Appending the link to the tabledata and then appending the tabledata to the tablerow
-                // The tablerow then gets appended to the tablebody
-                // CampsiteList.appendChild(link);
-                createTableRow.appendChild(tableData);
-                tableBody.appendChild(createTableRow);
-                tableData.appendChild(link);
+            //Link Name
+            for (var i = 0; i < linkNames.length; i++) {
+              var createTableRow = document.createElement("tr");
+              var tableData = document.createElement("td");
+              var link = document.createElement("a");
+            
+              //Append the li element to the id associated with the ul element.
+              link.textContent = FacilityNames[i].FacilityName;
+              link.href = linkNames[i].URL;
+              // Appending the link to the tabledata and then appending the tabledata to the tablerow
+              // The tablerow then gets appended to the tablebody
+              createTableRow.appendChild(tableData);
+              tableBody.appendChild(createTableRow);
+              tableData.appendChild(link);
 
-                /* console.log(linkNames);
-                 console.log(linkNames[i].URL); */
-              
-            }
+              /* console.log(linkNames);
+                console.log(linkNames[i].URL); */
+          }
   
         }
       });
@@ -120,6 +159,9 @@ function searchCampsite(facilityData) {
 //Campground Data for website
 function createCampgroundHtml(data) {
   console.log(data);
+  // //Move to next page 
+  // secondPage(); 
+
   //console.log(data.RECDATA[0].CampsiteName)
   //create Elements
 }
@@ -153,8 +195,8 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
-//gets current weather, for entered zip code, upon clicking the search button
 
+//gets current weather, for entered zip code, upon clicking the search button
 // Logan Changes, Yikes, Sorry for the extra 300 lines, I couldn't get it to work with anything else
 function currentInfo() {
   //retrieves value from city key in localStorage, uses value to run fetches
@@ -490,7 +532,6 @@ function currentInfo() {
       });
   }
 }
-
 currentInfo();
 
 //move window.location.href down here and added to a function, weather was not working since it would reload the page everytime the function ran
@@ -500,6 +541,8 @@ function secondPage() {
 searchRecAreas(zipCode);
 cityFormEl.addEventListener("submit", secondPage);
 // cityFormEl.addEventListener('submit', formSubmitHandler);
+
+
 
 // // Second Search -- Facility_Name
 // function searchFacilities(recData) {

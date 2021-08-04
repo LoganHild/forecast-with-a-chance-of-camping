@@ -5,12 +5,13 @@
 * {
   margin: 0;
   padding: 0;
-  color:white;
+  /* color:white; */
 }
 
-.datepicker {
+#datepicker {
   min-width: 150px;
   min-height: 40px;
+  color:black; 
 }
 
 .containers {
@@ -78,7 +79,26 @@
   font-size: 18px; /* Increase font size */
 }
 
+
 #myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+#homeBtn {
+  /* display: none; Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 120px; /* Place the button 60px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: var(--dark); /* Set a background color */
+  color: white !important; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+#homeBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
 
@@ -113,6 +133,20 @@
 }
 /*End Changes*/
 .userList img {
-    width: 100%;
-    max-width: 480px;
+  display:block;
+  height: auto;
+  width: 100%;
+  max-width: 480px;
+}
+.media-content {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: inherit;
+}
+.ui-datepicker .ui-datepicker-title select {
+  color: black;
+}
+p{
+  color: black;
 }

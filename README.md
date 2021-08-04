@@ -1,4 +1,4 @@
-# Outdoor Activities Dashboard
+# Forecast With A Chance Of Camping
 Campgrounds and their weather forecast 
 
 ## Description 
@@ -22,7 +22,7 @@ This application can be found here:
 * https://github.com/LoganHild/project-1/
 
 The URL of the GitHub repository that contains the code of the application:
-* https://github.com/.....
+* https://loganhild.github.io/forecast-with-a-chance-of-camping/
 
 
 ## Contributors
