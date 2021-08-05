@@ -142,3 +142,40 @@
 p {
   color: black;
 }
+
+@media (max-width: 375px) {
+  .userList img {
+    display: block;
+    height: auto;
+    width: 80%;
+    max-width: 180px;
+  }
+  .media {
+    display: block;
+  }
+  .card {
+    display: block;
+  }
+  p {
+    font-size: 10px;
+    color: black;
+  }
+  .inputs {
+    padding: 0;
+  }
+  .hero-body {
+    padding: 110px 0 0 0;
+  }
+  a {
+    font-size: 1opx;
+    /* overflow: auto; */
+  }
+  div .media {
+    font-size: 10px;
+  }
+
+  .footer {
+    font-size: 10px;
+    position: relative;
+  }
+}
